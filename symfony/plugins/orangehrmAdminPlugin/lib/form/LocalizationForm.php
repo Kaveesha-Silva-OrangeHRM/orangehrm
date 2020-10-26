@@ -83,7 +83,6 @@ class LocalizationForm extends BaseForm {
      * @return <type>
      */
     public function getFormValues() {
-
         return array('defaultLanguage' => $this->getValue('dafault_language'),
             'setBrowserLanguage' => $this->getValue('use_browser_language'),
             'defaultDateFormat' => $this->getValue('default_date_format'));

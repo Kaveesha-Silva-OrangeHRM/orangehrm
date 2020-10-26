@@ -94,10 +94,10 @@ class orangehrmRESTPluginAllTests
 
         $suite->addTestFile(dirname(__FILE__) . '/api/user/service/APILeaveApplicationServiceTest.php');
         $suite->addTestFile(dirname(__FILE__) . '/api/user/service/APILeaveAssignmentServiceTest.php');
+        $suite->addTestFile(dirname(__FILE__) . '/api/user/ApiAboutAPITest.php');
 
         // Api/PublicApi
         $suite->addTestFile(dirname(__FILE__) . '/api/publicApi/ApiDefinitionAPITest.php');
-
         return $suite;
     }
 }

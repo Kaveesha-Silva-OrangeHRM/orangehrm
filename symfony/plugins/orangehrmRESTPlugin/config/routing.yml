@@ -296,3 +296,9 @@ api_enabled_modules:
   param: { module:apiv1public, action: EnabledModulesApi }
   requirements:
     sf_method: [get]
+
+api_about:
+  url: /api/v1/about
+  param: { module:apiv1user, action: AboutApi }
+  requirements:
+    sf_method: [get]
