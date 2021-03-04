@@ -17,12 +17,28 @@
  * Boston, MA  02110-1301, USA
  */
 
-class indexAction extends BaseHelpAction
+class indexAction extends ohrmBaseAction
 {
-    public function execute($request)
-    {
-        $request = sfContext::getInstance()->getRequest();
-        $this->isHttps = $request->isSecure();
-        $this->url = rtrim(public_path('', true), "/");
+    public function getHelpService() {
+        if (!$this->helpService instanceof HelpService) {
+            $this->helpService = new HelpService();
+        }
+        return $this->helpService;
+    }
+
+    public function execute($request) {
+        if($this->getHelpService()->isValidUrl()) {
+            try{
+                $label = $request->getParameter('label');
+                $redirectUrl = $this->getHelpService()->getRedirectUrl($label);
+                $this->redirect($redirectUrl);
+            } catch (Exception $e) {
+                $defaultRedirectUrl = $this->getHelpService()->getDefaultRedirectUrl();
+                $this->redirect($defaultRedirectUrl);
+            }
+        } else {
+            $this->getResponse()->setContent('Unauthorized');
+            $this->getResponse()->setStatusCode(HttpResponseCode::HTTP_FORBIDDEN);
+        }
     }
 }
